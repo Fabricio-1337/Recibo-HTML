@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerar recibo</title>
+    <style>
+        * {
+            padding: 0%;
+            margin: 0%;
+            box-sizing: border-box;
+        }
+        .dados{
+            display:inline-flex;
+        }
+        .container{
+            margin: 10px;
+            padding: 1%;
+            background-color: #FEFFA9;
+            width: 350px;
+        }
+        .espacamento {
+            border: 1px solid black;
+            height: 100%;
+            position: relative;
+            
+        }
+        .print{
+            margin: 5px;
+        }
+        .recibo h1{
+            text-align: center;
+        }
+        .nomeEscola{
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .nomeAluno h4{
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+        .informacoes{
+            display: flex;
+            justify-content:space-between;
+        }
+        .serie{
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+        .dadosInformacoes{
+            display: flex;
+            justify-content: space-between;
+        }
+        .valor{
+            margin-top: 5px;
+        }
+        .valor h4{
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        .forma{
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .outrasInformacoes{
+            margin-top: 5px;
+            margin-top: 5px;
+        }
+        .outrasInformacoes h4{
+            text-align: center;
+        }
+        .outrasInformacoes p{
+            display: flex;
+            justify-content: space-evenly;
+        }
+    </style>
+</head>
+<body>
+    <div class="dados">
+        Nome Emitente: <br/>
+        <input type="text" id="emitente" /> <br></br/>
+        Recebemos de: <br/>
+        <input type="text" id="nome" /> <br></br/>
+        RG: <br/>
+        <input type="number" id="rg" /> <br></br/>
+        CPF: <br/>
+        <input type="number" id="cpf" /> <br></br/>
+        Nome do Aluno: <br/>
+        <input type="text" id="nomeAluno" /> <br></br/>
+        Valor: <br/>
+        <input type="number" id="valor" /> <br></br/>
+        <button onclick="gerarRecibo()">Gerar Recibo</button>
+    </div>
+    <div class="container">
+        <div class="print">
+            <div class="nomeEscola">
+                <h3><span id="recibo_emitente"></span></h3> 
+            </div>
+            <div class="espacamento"></div>
+            <div class="recibo">
+                <h1> >>>>> Recibo <<<<< </h1> 
+            </div>
+            <div class="declaracao">
+                <p>Declaramos que recebemos do(a) Sr(a)</p>
+            </div>
+            <div class="recebemos">
+                <h4><spam id="recibo_nome"></spam></h4>
+            </div>
+            <div class="docs">
+                <p>portador do RG: <spam id="recibo_rg"></spam></p>
+                <p>e CPF: <spam id="recibo_cpf"></spam></p>
+                <p>a(s) parcela(s) abaixo relacionadas</p>
+            </div>
+            <div class="espacamento"></div>
+            <div class="nomeAluno">
+                <h4><spam id="recibo_nomeAluno"></spam></h4>
+            </div>
+            <div class="informacoes">
+                <p>Documento</p>
+                <p>Vencimento</p>
+                <p>Valor</p>
+            </div>
+            <div class="espacamento"></div>
+            <div class="serie">
+                <p>Ensino Fundamental 2022 1T2B</p>
+            </div>
+            <div class="dadosInformacoes">
+                <p>000000000</p>
+                <p>31/07/2022</p>
+                <p><spam id="recibo_valor"></p>
+            </div>
+            <div class="espacamento"></div>
+            <div class="valor">
+                <h4><spam id="recibo_valor"></spam></h4>
+            </div>
+            <div class="formaPagamento">
+                <h4>Formas de Pagamentos</h4>
+            </div>
+            <div class="forma">
+                <p>Boleto</p>
+            </div>
+            <div class="espacamento"></div>
+            <div class="outrasInformacoes">
+                <h4>Visto do Caixa</h4>
+                <p>Data Pagamento:<span id="recibo_data"></span></p>
+                <p>Valor Total Baixa:</p>
+                <p>Valor Total Recebido:</p>
+                <p>Troco:</p>
+                <p>Observação</p>
+            </div>               
+        </div>
+    </div>
+    <script>
+        function gerarRecibo(){
+            document.getElementById('recibo_emitente').innerHTML = document.getElementById('emitente').value;
+            document.getElementById('recibo_nome').innerHTML = document.getElementById('nome').value;
+            document.getElementById('recibo_rg').innerHTML = document.getElementById('rg').value;
+            document.getElementById('recibo_cpf').innerHTML = document.getElementById('cpf').value;
+            document.getElementById('recibo_nomeAluno').innerHTML = document.getElementById('nomeAluno').value;
+            document.getElementById('recibo_valor').innerHTML = document.getElementById('valor').value;
+            document.getElementById('recibo_data').innerHTML = dataAtual();
+        }
+        function dataAtual(){
+            let data = new Date();
+            return data.getDate() + "/" + (data.getMonth()+1) + "/" + data.getFullYear();
+        }
+    </script>
+</body>
+</html>
